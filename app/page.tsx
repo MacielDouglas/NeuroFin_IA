@@ -28,7 +28,7 @@ export default async function HomePage() {
                   alt={`${user.firstName}&#39;s profile`}
                   className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl border-2 border-white dark:border-gray-600 shadow-lg"
                 />
-                <div className="absolute -bottom-1 -right-1 w-5 h-5 sm:w-6 sm:h-6 bg-gradient-to-r from-green-400 to-green-500 rounded-full border-2 border-white dark:border-gray-800 flex items-center justify-center">
+                <div className="absolute -bottom-1 -right-1 w-5 h-5 sm:w-6 sm:h-6 bg-gradient-to-r from-stone-400 to-stone-500 rounded-full border-2 border-white dark:border-gray-800 flex items-center justify-center">
                   <span className="text-white text-xs">✓</span>
                 </div>
               </div>
@@ -36,7 +36,7 @@ export default async function HomePage() {
               {/* User Details - responsive text and layout */}
               <div className="flex-1 text-center sm:text-left">
                 <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-start gap-2 sm:gap-3 mb-3">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-emerald-500 via-green-500 to-teal-500 rounded-xl flex items-center justify-center shadow-lg">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-slate-500 via-stone-500 to-neutral-500 rounded-xl flex items-center justify-center shadow-lg">
                     <span className="text-white text-sm sm:text-lg">👋</span>
                   </div>
                   <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-gray-100">
@@ -50,8 +50,8 @@ export default async function HomePage() {
                 </p>
                 {/* Mobile-optimized badge grid */}
                 <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center sm:justify-start">
-                  <div className="bg-gradient-to-r from-emerald-50 to-green-50 dark:from-emerald-900/30 dark:to-green-900/30 border border-emerald-100 dark:border-emerald-800 px-3 py-2 rounded-xl flex items-center gap-2 justify-center sm:justify-start">
-                    <div className="w-5 h-5 sm:w-6 sm:h-6 bg-gradient-to-r from-emerald-500 to-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="bg-gradient-to-r from-slate-50 to-stone-50 dark:from-slate-900/30 dark:to-stone-900/30 border border-slate-100 dark:border-slate-800 px-3 py-2 rounded-xl flex items-center gap-2 justify-center sm:justify-start">
+                    <div className="w-5 h-5 sm:w-6 sm:h-6 bg-gradient-to-r from-slate-500 to-stone-500 rounded-lg flex items-center justify-center flex-shrink-0">
                       <span className="text-white text-xs">📅</span>
                     </div>
                     <div className="text-center sm:text-left">
@@ -63,8 +63,8 @@ export default async function HomePage() {
                       </span>
                     </div>
                   </div>
-                  <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/30 dark:to-emerald-900/30 border border-green-100 dark:border-green-800 px-3 py-2 rounded-xl flex items-center gap-2 justify-center sm:justify-start">
-                    <div className="w-5 h-5 sm:w-6 sm:h-6 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="bg-gradient-to-r from-stone-50 to-slate-50 dark:from-stone-900/30 dark:to-slate-900/30 border border-stone-100 dark:border-stone-800 px-3 py-2 rounded-xl flex items-center gap-2 justify-center sm:justify-start">
+                    <div className="w-5 h-5 sm:w-6 sm:h-6 bg-gradient-to-r from-stone-500 to-slate-500 rounded-lg flex items-center justify-center flex-shrink-0">
                       <span className="text-white text-xs">⚡</span>
                     </div>
                     <div className="text-center sm:text-left">

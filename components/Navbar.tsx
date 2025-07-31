@@ -74,7 +74,7 @@ const Navbar = () => {
             <div className="hidden sm:block">
               <SignedOut>
                 <SignInButton>
-                  <button className="relative overflow-hidden bg-gradient-to-r from-gray-500 via-slate-500 to-teal-500 hover:from-gray-600 hover:via-slate-600 hover:to-teal-600 text-white px-3 sm:px-4 py-2 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 active:scale-95">
+                  <button className="relative overflow-hidden bg-gradient-to-r from-gray-500 via-slate-500 to-neutral-500 hover:from-gray-600 hover:via-slate-600 hover:to-neutral-600 text-white px-3 sm:px-4 py-2 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 active:scale-95">
                     <div className="relative z-10 flex items-center gap-1 sm:gap-2">
                       <span>Sign In</span>
                       <svg
@@ -191,7 +191,7 @@ const Navbar = () => {
               <SignedOut>
                 <SignInButton>
                   <button
-                    className="w-full bg-gradient-to-r from-gray-500 via-slate-500 to-teal-500 hover:from-gray-600 hover:via-slate-600 hover:to-teal-600 text-white px-4 py-3 rounded-xl text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 active:scale-95"
+                    className="w-full bg-gradient-to-r from-gray-500 via-slate-500 to-neutral-500 hover:from-gray-600 hover:via-slate-600 hover:to-neutral-600 text-white px-4 py-3 rounded-xl text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 active:scale-95"
                     onClick={closeMobileMenu}
                   >
                     <span>Sign In</span>

@@ -22,7 +22,7 @@ const ExpenseStats = async () => {
     return (
       <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-4 sm:p-6 rounded-2xl shadow-xl border border-gray-100/50 dark:border-gray-700/50 hover:shadow-2xl">
         <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
-          <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-emerald-500 via-green-500 to-teal-500 rounded-xl flex items-center justify-center shadow-lg">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-slate-500 via-stone-500 to-neutral-500 rounded-xl flex items-center justify-center shadow-lg">
             <span className="text-white text-sm sm:text-lg">📊</span>
           </div>
           <div>
@@ -45,8 +45,8 @@ const ExpenseStats = async () => {
               <div className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
                 ${averageExpense.toFixed(2)}
               </div>
-              <div className="inline-flex items-center gap-2 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 px-2 py-1 rounded-full text-xs font-medium">
-                <span className="w-1.5 h-1.5 bg-emerald-500 dark:bg-emerald-400 rounded-full"></span>
+              <div className="inline-flex items-center gap-2 bg-slate-50 dark:bg-slate-900/30 text-slate-700 dark:text-slate-300 px-2 py-1 rounded-full text-xs font-medium">
+                <span className="w-1.5 h-1.5 bg-slate-500 dark:bg-slate-400 rounded-full"></span>
                 Baseado em {validDays} dias com despesas
               </div>
             </div>
@@ -74,10 +74,10 @@ const ExpenseStats = async () => {
             </div>
 
             {/* Lowest Expense */}
-            <div className="bg-green-50/80 dark:bg-green-900/20 backdrop-blur-sm p-3 sm:p-4 rounded-xl border-l-4 border-l-green-500 hover:bg-green-50 dark:hover:bg-green-900/30">
+            <div className="bg-stone-50/80 dark:bg-stone-900/20 backdrop-blur-sm p-3 sm:p-4 rounded-xl border-l-4 border-l-stone-500 hover:bg-stone-50 dark:hover:bg-stone-900/30">
               <div className="flex items-center gap-2">
-                <div className="w-6 h-6 bg-green-100 dark:bg-green-800 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <span className="text-sm leading-none text-green-600 dark:text-green-300 font-bold">
+                <div className="w-6 h-6 bg-stone-100 dark:bg-stone-800 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <span className="text-sm leading-none text-stone-600 dark:text-stone-300 font-bold">
                     ↓
                   </span>
                 </div>
@@ -85,7 +85,7 @@ const ExpenseStats = async () => {
                   <h4 className="font-bold text-gray-900 dark:text-gray-100 text-xs mb-0.5">
                     Mais baixo
                   </h4>
-                  <p className="text-lg font-bold text-green-600 dark:text-green-300">
+                  <p className="text-lg font-bold text-stone-600 dark:text-stone-300">
                     {worstExpense !== undefined
                       ? `$${worstExpense}`
                       : "No data"}
@@ -102,7 +102,7 @@ const ExpenseStats = async () => {
     return (
       <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-8 rounded-2xl shadow-xl border border-gray-100/50 dark:border-gray-700/50 hover:shadow-2xl">
         <div className="flex items-center gap-3 mb-6">
-          <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 via-green-500 to-teal-500 rounded-xl flex items-center justify-center shadow-lg">
+          <div className="w-12 h-12 bg-gradient-to-br from-slate-500 via-stone-500 to-neutral-500 rounded-xl flex items-center justify-center shadow-lg">
             <span className="text-white text-xl">📊</span>
           </div>
           <div>

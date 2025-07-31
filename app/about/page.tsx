@@ -4,7 +4,7 @@ const AboutPage = () => {
   return (
     <div className="font-sans bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900/20 text-gray-800 dark:text-gray-200 transition-all duration-300 min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden flex flex-col items-center justify-center text-center py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 bg-gradient-to-br from-gray-500/10 via-stone-500/5 to-teal-500/10 dark:from-gray-900/30 dark:via-stone-900/20 dark:to-teal-900/30">
+      <section className="relative overflow-hidden flex flex-col items-center justify-center text-center py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 bg-gradient-to-br from-gray-500/10 via-stone-500/5 to-neutral-500/10 dark:from-gray-900/30 dark:via-stone-900/20 dark:to-neutral-900/30">
         <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10"></div>
         <div className="relative z-10 max-w-4xl mx-auto w-full">
           <div className="inline-flex items-center gap-2 bg-gray-50 dark:bg-gray-900/30 text-gray-700 dark:text-gray-300 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium mb-4 sm:mb-6 shadow-lg">
@@ -16,7 +16,7 @@ const AboutPage = () => {
           </div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 text-gray-900 dark:text-gray-100 leading-tight">
             Sobre{" "}
-            <span className="bg-gradient-to-r from-gray-600 via-stone-500 to-teal-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-gray-600 via-stone-500 to-neutral-500 bg-clip-text text-transparent">
               NeuroFinAI
             </span>
           </h1>
@@ -27,7 +27,7 @@ const AboutPage = () => {
           <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-2 sm:px-0">
             <Link
               href="/sign-up"
-              className="group relative overflow-hidden bg-gradient-to-r from-gray-600 via-stone-500 to-teal-500 hover:from-gray-700 hover:via-stone-600 hover:to-teal-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-semibold shadow-2xl hover:shadow-3xl transition-all duration-200 transform hover:-translate-y-0.5"
+              className="group relative overflow-hidden bg-gradient-to-r from-gray-600 via-stone-500 to-neutral-500 hover:from-gray-700 hover:via-stone-600 hover:to-neutral-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-semibold shadow-2xl hover:shadow-3xl transition-all duration-200 transform hover:-translate-y-0.5"
             >
               <span className="relative z-10">Comece sua jornada</span>
               <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
@@ -44,7 +44,7 @@ const AboutPage = () => {
 
       {/* Mission Section */}
       <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gray-500 via-stone-500 to-teal-500"></div>
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gray-500 via-stone-500 to-neutral-500"></div>
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 bg-gray-50 dark:bg-gray-900/30 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full text-xs sm:text-sm font-medium mb-4 sm:mb-6">
             <span className="w-1.5 h-1.5 bg-gray-500 dark:bg-gray-400 rounded-full"></span>
@@ -70,7 +70,7 @@ const AboutPage = () => {
                 Usuários ativos
               </div>
             </div>
-            <div className="bg-gradient-to-br from-stone-50 to-teal-50 dark:from-stone-900/20 dark:to-teal-900/20 p-6 rounded-2xl border border-stone-100 dark:border-stone-800/50">
+            <div className="bg-gradient-to-br from-stone-50 to-neutral-50 dark:from-stone-900/20 dark:to-neutral-900/20 p-6 rounded-2xl border border-stone-100 dark:border-stone-800/50">
               <div className="text-3xl font-bold text-stone-600 dark:text-stone-400 mb-2">
                 R$2M+
               </div>
@@ -78,8 +78,8 @@ const AboutPage = () => {
                 Dinheiro rastreado
               </div>
             </div>
-            <div className="bg-gradient-to-br from-teal-50 to-gray-50 dark:from-teal-900/20 dark:to-gray-900/20 p-6 rounded-2xl border border-teal-100 dark:border-teal-800/50">
-              <div className="text-3xl font-bold text-teal-600 dark:text-teal-400 mb-2">
+            <div className="bg-gradient-to-br from-neutral-50 to-gray-50 dark:from-neutral-900/20 dark:to-gray-900/20 p-6 rounded-2xl border border-neutral-100 dark:border-neutral-800/50">
+              <div className="text-3xl font-bold text-neutral-600 dark:text-neutral-400 mb-2">
                 99%
               </div>
               <div className="text-gray-600 dark:text-gray-400 font-medium">
@@ -114,7 +114,7 @@ const AboutPage = () => {
             <div className="group relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-8 rounded-2xl shadow-xl border border-gray-100/50 dark:border-gray-700/50 hover:shadow-2xl transition-all duration-200 hover:-translate-y-1">
               <div className="absolute inset-0 bg-gradient-to-br from-gray-500/5 to-stone-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
               <div className="relative z-10">
-                <div className="w-12 h-12 bg-gradient-to-br from-gray-500 via-stone-500 to-teal-500 rounded-xl flex items-center justify-center shadow-lg mb-6">
+                <div className="w-12 h-12 bg-gradient-to-br from-gray-500 via-stone-500 to-neutral-500 rounded-xl flex items-center justify-center shadow-lg mb-6">
                   <span className="text-white text-xl">🤖</span>
                 </div>
                 <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">
@@ -129,9 +129,9 @@ const AboutPage = () => {
             </div>
 
             <div className="group relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-8 rounded-2xl shadow-xl border border-gray-100/50 dark:border-gray-700/50 hover:shadow-2xl transition-all duration-200 hover:-translate-y-1">
-              <div className="absolute inset-0 bg-gradient-to-br from-stone-500/5 to-teal-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-stone-500/5 to-neutral-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
               <div className="relative z-10">
-                <div className="w-12 h-12 bg-gradient-to-br from-stone-500 via-teal-500 to-gray-500 rounded-xl flex items-center justify-center shadow-lg mb-6">
+                <div className="w-12 h-12 bg-gradient-to-br from-stone-500 via-neutral-500 to-gray-500 rounded-xl flex items-center justify-center shadow-lg mb-6">
                   <span className="text-white text-xl">✨</span>
                 </div>
                 <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">
@@ -146,9 +146,9 @@ const AboutPage = () => {
             </div>
 
             <div className="group relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-8 rounded-2xl shadow-xl border border-gray-100/50 dark:border-gray-700/50 hover:shadow-2xl transition-all duration-200 hover:-translate-y-1">
-              <div className="absolute inset-0 bg-gradient-to-br from-teal-500/5 to-gray-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-neutral-500/5 to-gray-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
               <div className="relative z-10">
-                <div className="w-12 h-12 bg-gradient-to-br from-teal-500 via-gray-500 to-stone-500 rounded-xl flex items-center justify-center shadow-lg mb-6">
+                <div className="w-12 h-12 bg-gradient-to-br from-neutral-500 via-gray-500 to-stone-500 rounded-xl flex items-center justify-center shadow-lg mb-6">
                   <span className="text-white text-xl">📊</span>
                 </div>
                 <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">
@@ -168,7 +168,7 @@ const AboutPage = () => {
       {/* Story Section */}
       <section className="py-20 px-8 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-gray-500/5 to-stone-500/5 rounded-full blur-2xl"></div>
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-br from-teal-500/5 to-gray-500/5 rounded-full blur-2xl"></div>
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-br from-neutral-500/5 to-gray-500/5 rounded-full blur-2xl"></div>
 
         <div className="max-w-4xl mx-auto relative z-10">
           <div className="text-center mb-12">
@@ -201,8 +201,8 @@ const AboutPage = () => {
               <div className="flex items-center gap-4 pt-4">
                 <div className="flex -space-x-2">
                   <div className="w-10 h-10 bg-gradient-to-br from-gray-500 to-stone-500 rounded-full border-2 border-white dark:border-gray-800"></div>
-                  <div className="w-10 h-10 bg-gradient-to-br from-stone-500 to-teal-500 rounded-full border-2 border-white dark:border-gray-800"></div>
-                  <div className="w-10 h-10 bg-gradient-to-br from-teal-500 to-gray-500 rounded-full border-2 border-white dark:border-gray-800"></div>
+                  <div className="w-10 h-10 bg-gradient-to-br from-stone-500 to-neutral-500 rounded-full border-2 border-white dark:border-gray-800"></div>
+                  <div className="w-10 h-10 bg-gradient-to-br from-neutral-500 to-gray-500 rounded-full border-2 border-white dark:border-gray-800"></div>
                 </div>
                 <div className="text-sm text-gray-600 dark:text-gray-400">
                   <div className="font-semibold">
@@ -228,7 +228,7 @@ const AboutPage = () => {
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="w-3 h-3 bg-teal-500 dark:bg-teal-400 rounded-full"></div>
+                  <div className="w-3 h-3 bg-neutral-500 dark:bg-neutral-400 rounded-full"></div>
                   <div className="text-gray-900 dark:text-gray-100 font-medium">
                     Impacto global
                   </div>
@@ -248,7 +248,7 @@ const AboutPage = () => {
       {/* Call to Action Section */}
       <section className="py-20 px-8 bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900/20 relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10"></div>
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gray-500 via-stone-500 to-teal-500"></div>
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gray-500 via-stone-500 to-neutral-500"></div>
 
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 bg-gray-50 dark:bg-gray-900/30 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-full text-sm font-medium mb-6 shadow-lg">
@@ -258,7 +258,7 @@ const AboutPage = () => {
 
           <h2 className="text-4xl md:text-6xl font-bold mb-6 leading-tight text-gray-900 dark:text-gray-100">
             Assuma o controle do seu{" "}
-            <span className="bg-gradient-to-r from-gray-600 via-stone-500 to-teal-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-gray-600 via-stone-500 to-neutral-500 bg-clip-text text-transparent">
               Futuro Financeiro
             </span>
           </h2>
@@ -272,7 +272,7 @@ const AboutPage = () => {
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <Link
               href="/sign-up"
-              className="group relative overflow-hidden bg-gradient-to-r from-gray-600 via-stone-500 to-teal-500 hover:from-gray-700 hover:via-stone-600 hover:to-teal-600 text-white px-8 py-4 rounded-2xl font-bold shadow-2xl hover:shadow-3xl transition-all duration-200 transform hover:-translate-y-0.5"
+              className="group relative overflow-hidden bg-gradient-to-r from-gray-600 via-stone-500 to-neutral-500 hover:from-gray-700 hover:via-stone-600 hover:to-neutral-600 text-white px-8 py-4 rounded-2xl font-bold shadow-2xl hover:shadow-3xl transition-all duration-200 transform hover:-translate-y-0.5"
             >
               <span className="relative z-10 flex items-center gap-2">
                 Comece gratuitamente
@@ -310,7 +310,7 @@ const AboutPage = () => {
               </div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-teal-600 dark:text-teal-400 mb-2">
+              <div className="text-3xl font-bold text-neutral-600 dark:text-neutral-400 mb-2">
                 Instantâneo
               </div>
               <div className="text-gray-600 dark:text-gray-400">

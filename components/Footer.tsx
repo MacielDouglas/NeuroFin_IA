@@ -10,19 +10,19 @@ const Footer = () => {
   return (
     <footer className="relative overflow-hidden bg-gradient-to-br from-stone-50 via-white to-gray-50 dark:from-stone-900 dark:via-stone-800 dark:to-gray-900/20 border-t border-stone-100/50 dark:border-stone-700/50">
       {/* Gradient accent line */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gray-500 via-stone-500 to-teal-500"></div>
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gray-500 via-stone-500 to-neutral-500"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Logo and Tagline */}
           <div className="text-center md:text-left">
             <div className="inline-flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-br from-gray-500 via-stone-500 to-teal-500 rounded-xl flex items-center justify-center shadow-lg">
+              <div className="w-8 h-8 bg-gradient-to-br from-gray-500 via-stone-500 to-neutral-500 rounded-xl flex items-center justify-center shadow-lg">
                 <span className="text-white text-lg">
                   <CircleDollarSign />
                 </span>
               </div>
-              <h2 className="text-xl font-bold bg-gradient-to-r from-gray-600 via-stone-500 to-teal-500 bg-clip-text text-transparent">
+              <h2 className="text-xl font-bold bg-gradient-to-r from-gray-600 via-stone-500 to-neutral-500 bg-clip-text text-transparent">
                 NeuroFin IA
               </h2>
             </div>
