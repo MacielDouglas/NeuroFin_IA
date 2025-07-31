@@ -17,7 +17,7 @@ const AboutPage = () => {
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 text-gray-900 dark:text-gray-100 leading-tight">
             Sobre{" "}
             <span className="bg-gradient-to-r from-gray-600 via-stone-500 to-teal-500 bg-clip-text text-transparent">
-              Rastreado de Despesas AI
+              NeuroFinAI
             </span>
           </h1>
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed px-2 sm:px-0">
@@ -55,8 +55,8 @@ const AboutPage = () => {
             <span className="text-gray-600 dark:text-gray-400">AI</span>
           </h2>
           <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl mx-auto">
-            No Rastreador de Despesas IA, utilizamos inteligência artificial de
-            ponta para revolucionar a forma como as pessoas alcançam o bem-estar
+            No NeuroFin IA, utilizamos inteligência artificial de ponta para
+            revolucionar a forma como as pessoas alcançam o bem-estar
             financeiro. Nossa IA analisa seus padrões de gastos para fornecer
             recomendações personalizadas e insights práticos que levam a melhor
             orçamento e liberdade financeira.
@@ -101,7 +101,7 @@ const AboutPage = () => {
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-gray-100">
               Por que escolher{" "}
               <span className="text-gray-600 dark:text-gray-400">
-                Rastreador de Despesas IA?
+                NeuroFin IA?
               </span>
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
@@ -185,10 +185,10 @@ const AboutPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-                O Rastreador de Despesas IA nasceu da visão de criar ferramentas
-                de gestão financeira verdadeiramente inteligentes. Nossa equipe
-                de especialistas financeiros, cientistas de dados e tecnólogos
-                se uniu para resolver um problema crítico: tornar a gestão das
+                O NeuroFin IA nasceu da visão de criar ferramentas de gestão
+                financeira verdadeiramente inteligentes. Nossa equipe de
+                especialistas financeiros, cientistas de dados e tecnólogos se
+                uniu para resolver um problema crítico: tornar a gestão das
                 finanças pessoais mais inteligente, intuitiva e eficaz.
               </p>
               <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
@@ -265,8 +265,8 @@ const AboutPage = () => {
 
           <p className="text-xl md:text-2xl mb-10 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
             Junte-se a milhares de usuários que já transformaram seus hábitos
-            financeiros com o Rastreador de Despesas IA. Comece sua jornada rumo
-            a um orçamento mais inteligente hoje mesmo.
+            financeiros com o NeuroFin IA. Comece sua jornada rumo a um
+            orçamento mais inteligente hoje mesmo.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">

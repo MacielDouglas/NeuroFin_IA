@@ -23,7 +23,7 @@ const Footer = () => {
                 </span>
               </div>
               <h2 className="text-xl font-bold bg-gradient-to-r from-gray-600 via-stone-500 to-teal-500 bg-clip-text text-transparent">
-                Rastreador de Despesas AI
+                NeuroFin IA
               </h2>
             </div>
             <p className="text-stone-600 dark:text-stone-400 leading-relaxed max-w-sm">
@@ -105,8 +105,8 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="text-center md:text-left mb-4 md:mb-0">
             <p className="text-stone-500 dark:text-stone-400 text-sm">
-              © {new Date().getFullYear()} Rastreador de Despesas AI. Todos os
-              direitos reservados.
+              © {new Date().getFullYear()} NeuroFin IA Todos os direitos
+              reservados.
             </p>
           </div>
 

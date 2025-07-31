@@ -32,10 +32,8 @@ const Navbar = () => {
                 <CircleDollarSign className="text-slate-600" />
               </div>
               <span className="text-sm sm:text-base md:text-lg lg:text-xl font-bold bg-orange-500 bg-clip-text text-transparent">
-                <span className="hidden sm:inline">
-                  Rastreador de Despesas AI
-                </span>
-                <span className="sm:hidden">Rastreador de Despesas</span>
+                <span className="hidden sm:inline">NeuroFin IA</span>
+                <span className="sm:hidden">NeuroFin IA</span>
               </span>
             </Link>
           </div>
