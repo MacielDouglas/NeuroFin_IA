@@ -1,6 +1,6 @@
 import getRecords from "@/app/actions/getRecords";
-import RecordItem from "./RecordItem";
 import { Record } from "@/types/Record";
+import RecordItem from "./RecordItem";
 
 const RecordHistory = async () => {
   const { records, error } = await getRecords();
