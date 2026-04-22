@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { APP_DESCRIPTION, APP_NAME } from "@/lib/constants/app";
+import { Button } from "@/components/ui/button";
 
 export default function PublicHomePage() {
   return (
@@ -15,6 +17,16 @@ export default function PublicHomePage() {
         <p className="mt-6 max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300">
           {APP_DESCRIPTION}
         </p>
+
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <Link href="/sign-up">
+            <Button>Criar conta</Button>
+          </Link>
+
+          <Link href="/sign-in">
+            <Button variant="secondary">Entrar</Button>
+          </Link>
+        </div>
       </section>
     </main>
   );
