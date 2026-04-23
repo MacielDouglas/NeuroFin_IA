@@ -6,7 +6,6 @@ import { createSubtaskSchema, createTaskSchema, updateTaskSchema } from "@/lib/v
 import { getServerSession } from "@/lib/auth/session";
 import { taskService } from "@/server/services/task.service";
 import { revalidatePath } from "next/cache";
-import { firstIssue } from "@/lib/validations/parse-error";
 
 
 
@@ -15,22 +14,23 @@ export async function createTaskAction(formData: FormData) {
   if (!session) return fail("Não autenticado", "UNAUTHORIZED");
 
   const raw = {
-    title: formData.get("title"),
-    description: formData.get("description"),
-    priority: formData.get("priority"),
-    dueDate: formData.get("dueDate") || undefined,
-    assigneeId: formData.get("assigneeId") || undefined,
+    title:     formData.get("title"),
     projectId: formData.get("projectId"),
   };
 
-  const parsed = createTaskSchema.safeParse(raw);
-if (!parsed.success) {
-  return fail(firstIssue(parsed.error), "VALIDATION_ERROR");
-}
+  // formData.get() retorna null se o campo não existe — converter para undefined
+  const parsed = createTaskSchema.safeParse({
+    title:     raw.title ?? undefined,
+    projectId: raw.projectId ?? undefined,
+  });
+
+  if (!parsed.success) {
+    const message = parsed.error.issues[0]?.message ?? "Dados inválidos";
+    return fail(message, "VALIDATION_ERROR");
+  }
 
   try {
     const task = await taskService.create(parsed.data, session.user.id);
-    revalidatePath(`/projects/${parsed.data.projectId}`);
     return ok(task);
   } catch (error) {
     if (error instanceof AppError) return fail(error.message, error.code);

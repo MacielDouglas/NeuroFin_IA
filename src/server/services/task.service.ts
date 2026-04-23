@@ -45,7 +45,7 @@ export const taskService = {
     return taskRepository.createSubtask(data);
   },
 
-  async toggleSubtask(subtaskId: string, userId: string) {
+ async toggleSubtask(subtaskId: string, _userId: string) {
     return taskRepository.toggleSubtask(subtaskId);
   },
 };

@@ -1,24 +1,41 @@
 "use client"
 
-import * as React from "react"
-import { Label as LabelPrimitive } from "radix-ui"
+import * as React from "react";
+import * as LabelPrimitive from "@radix-ui/react-label";
+import { cn } from "@/lib/utils/cn";
 
-import { cn } from "@/lib/utils/cn"
+export type LabelProps = React.ComponentPropsWithoutRef<
+  typeof LabelPrimitive.Root
+> & {
+  /** Exibe asterisco vermelho indicando campo obrigatório */
+  required?: boolean;
+};
 
-function Label({
-  className,
-  ...props
-}: React.ComponentProps<typeof LabelPrimitive.Root>) {
-  return (
-    <LabelPrimitive.Root
-      data-slot="label"
-      className={cn(
-        "flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50",
-        className
-      )}
-      {...props}
-    />
-  )
-}
+const Label = React.forwardRef<
+  React.ElementRef<typeof LabelPrimitive.Root>,
+  LabelProps
+>(({ className, required, children, ...props }, ref) => (
+  <LabelPrimitive.Root
+    ref={ref}
+    className={cn(
+      "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+      className,
+    )}
+    {...props}
+  >
+    {children}
+    {required && (
+      <span
+        className="ml-0.5 text-destructive"
+        aria-hidden="true"
+        title="Campo obrigatório"
+      >
+        *
+      </span>
+    )}
+  </LabelPrimitive.Root>
+));
 
-export { Label }
+Label.displayName = LabelPrimitive.Root.displayName;
+
+export { Label };

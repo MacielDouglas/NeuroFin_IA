@@ -2,7 +2,6 @@ import { describe, expect, it } from "vitest";
 import { createSubtaskSchema, createTaskSchema, updateTaskSchema } from "@/lib/validations/task";
 
 describe("createTaskSchema", () => {
-  const validProjectId = "cuid_xxxxxxxxxxxxxxxx";
 
   it("deve validar dados mínimos", () => {
     const result = createTaskSchema.safeParse({

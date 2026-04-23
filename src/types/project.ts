@@ -4,7 +4,11 @@ export type { ProjectStatus, MemberRole };
 
 export type ProjectWithOwner = Project & {
   owner: Pick<User, "id" | "name" | "image">;
-  _count: { tasks: number; members: number };
+  _count: {
+    tasks: number;
+    completedTasks: number; // ← adicionar
+    members: number;
+  };
 };
 
 export type ProjectWithMembers = Project & {

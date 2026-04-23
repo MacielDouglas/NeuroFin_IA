@@ -31,6 +31,8 @@ model User {
   taskComments    TaskComment[]
   taskHistory     TaskHistory[]
 
+  aiSuggestions AiSuggestion[]
+
   @@map("users")
 }
 
@@ -95,6 +97,8 @@ model Project {
   owner   User            @relation("ProjectOwner", fields: [ownerId], references: [id], onDelete: Cascade)
   members ProjectMember[]
   tasks   Task[]
+
+  aiSuggestions AiSuggestion[]
 
   @@index([ownerId])
   @@index([status])
@@ -168,6 +172,8 @@ model Task {
   comments  TaskComment[]
   history   TaskHistory[]
 
+  aiSuggestions AiSuggestion[]
+
   @@index([projectId])
   @@index([assigneeId])
   @@index([status])
@@ -218,4 +224,34 @@ model TaskHistory {
 
   @@index([taskId])
   @@map("task_history")
+}
+
+enum AiFeature {
+  GENERATE_SUBTASKS
+  ESTIMATE_DEADLINE
+  SUMMARIZE_PROJECT
+  DETECT_BOTTLENECKS
+}
+
+model AiSuggestion {
+  id          String    @id @default(cuid())
+  feature     AiFeature
+  input       Json
+  output      Json
+  model       String
+  provider    String    @default("groq")
+  latencyMs   Int
+  createdAt   DateTime  @default(now())
+  projectId   String?
+  taskId      String?
+  userId      String
+
+  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  project Project? @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  task    Task?    @relation(fields: [taskId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([projectId])
+  @@index([feature])
+  @@map("ai_suggestions")
 }
