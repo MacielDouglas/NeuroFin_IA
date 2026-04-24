@@ -4,6 +4,7 @@ import { useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { createTaskAction } from "@/server/actions/task.actions";
+import { notify } from "@/lib/utils/toast";
 
 type CreateTaskInlineProps = {
   projectId: string;
@@ -34,6 +35,12 @@ export function CreateTaskInline({ projectId, onClose }: CreateTaskInlineProps) 
       setError(result.error);
       return;
     }
+
+    notify.success("Tarefa criada!");
+    startTransition(() => {
+      router.refresh();
+      onClose();
+    });
 
     // startTransition garante que o refresh complete antes de fechar
     startTransition(() => {

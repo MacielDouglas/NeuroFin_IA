@@ -6,6 +6,8 @@ import { taskService } from "@/server/services/task.service";
 import { ForbiddenError, NotFoundError } from "@/lib/errors/app-error";
 import { ProjectHeader } from "@/features/projects/components/project-header";
 import { TaskBoard } from "@/features/tasks/components/task-board";
+import { Suspense } from "react";
+import { TaskBoardSkeleton } from "@/features/tasks/components/task-board-skeleton";
 
 type ProjectPageProps = {
   params: Promise<{ id: string }>;
@@ -37,7 +39,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     return (
       <div className="flex h-full flex-col gap-6">
         <ProjectHeader project={project} />
-        <TaskBoard tasks={tasks} projectId={id} />
+       <Suspense fallback={<TaskBoardSkeleton />}>
+  <TaskBoard tasks={tasks} projectId={project.id} />
+</Suspense>
       </div>
     );
   } catch (error) {

@@ -83,4 +83,27 @@ async create(
  async toggleSubtask(subtaskId: string, _userId: string) {
     return taskRepository.toggleSubtask(subtaskId);
   },
+
+  async listByUser(userId: string) {
+  return prisma.task.findMany({
+    where: {
+      project: {
+        members: { some: { userId } },
+      },
+    },
+    include: {
+      assignee: { select: { id: true, name: true, image: true } },
+      createdBy: { select: { id: true, name: true, image: true } },
+      subtasks: { orderBy: { createdAt: "asc" } },
+      _count: { select: { subtasks: true } },
+      project: { select: { id: true, name: true } },
+    },
+    orderBy: [
+      { priority: "desc" },
+      { dueDate: "asc" },
+      { createdAt: "desc" },
+    ],
+  });
+}
 };
+

@@ -2,8 +2,7 @@ import type { ReactNode } from "react";
 import { requireSession } from "@/lib/auth/authorize";
 import { Header } from "@/components/layout/header";
 import { Sidebar } from "@/components/layout/sidebar";
-// import { Sidebar } from "@/components/layout/sidebar";
-// import { Header } from "@/components/layout/header";
+
 
 type ProtectedLayoutProps = {
   children: ReactNode;

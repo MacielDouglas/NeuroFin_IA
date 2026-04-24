@@ -6,6 +6,8 @@ import { projectService } from "@/server/services/project.service";
 import { Button } from "@/components/ui/button";
 import { EmptyProjects } from "@/features/components/empty-projects";
 import { ProjectCard } from "@/features/projects/components/project-card";
+import { Suspense } from "react";
+import { ProjectCardSkeleton } from "@/features/projects/components/project-card-skeleton";
 
 
 export const metadata: Metadata = { title: "Projetos" };
@@ -31,6 +33,17 @@ export default async function ProjectsPage() {
         </Button>
       </div>
 
+         <Suspense
+        fallback={
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {Array.from({ length: 3 }).map((_, i) => (
+              <ProjectCardSkeleton key={i} />
+            ))}
+          </div>
+        }
+      >
+
+
       {projects.length === 0 ? (
         <EmptyProjects />
       ) : (
@@ -40,6 +53,7 @@ export default async function ProjectsPage() {
           ))}
         </div>
       )}
+      </Suspense>
     </div>
   );
 }

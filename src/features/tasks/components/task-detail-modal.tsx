@@ -31,6 +31,7 @@ import type { TaskWithRelations } from "@/types/task";
 import type { TaskStatus, TaskPriority } from "@/generated/prisma/client";
 import { AiSubtaskGenerator } from "./ai-substask-generator";
 import { AiDeadlineEstimator } from "./ai-deadline-estimator";
+import { notify } from "@/lib/utils/toast";
 
 type TaskDetailModalProps = {
   task: TaskWithRelations;
@@ -44,25 +45,40 @@ export function TaskDetailModal({ task, open, onClose }: TaskDetailModalProps) {
   const [description, setDescription] = useState(task.description ?? "");
   const [editingDesc, setEditingDesc] = useState(false);
 
-  function handleStatusChange(status: TaskStatus) {
-    startTransition(async () => {
-      await updateTaskAction(task.id, { status });
-      router.refresh();
-    });
-  }
+ function handleStatusChange(status: TaskStatus) {
+  startTransition(async () => {
+    const result = await updateTaskAction(task.id, { status });
+    if (!result.success) {
+      notify.error("Erro ao atualizar status");
+      return;
+    }
+    notify.success("Status atualizado");
+    router.refresh();
+  });
+}
 
-  function handlePriorityChange(priority: TaskPriority) {
-    startTransition(async () => {
-      await updateTaskAction(task.id, { priority });
-      router.refresh();
-    });
-  }
+function handlePriorityChange(priority: TaskPriority) {
+  startTransition(async () => {
+    const result = await updateTaskAction(task.id, { priority });
+    if (!result.success) {
+      notify.error("Erro ao atualizar prioridade");
+      return;
+    }
+    notify.success("Prioridade atualizada");
+    router.refresh();
+  });
+}
 
-  async function handleDescriptionSave() {
-    await updateTaskAction(task.id, { description });
-    setEditingDesc(false);
-    startTransition(() => router.refresh());
+async function handleDescriptionSave() {
+  const result = await updateTaskAction(task.id, { description });
+  if (!result.success) {
+    notify.error("Erro ao salvar descrição");
+    return;
   }
+  notify.success("Descrição salva");
+  setEditingDesc(false);
+  startTransition(() => router.refresh());
+}
 
   const statusColors: Record<TaskStatus, string> = {
     BACKLOG:     "bg-secondary text-secondary-foreground",

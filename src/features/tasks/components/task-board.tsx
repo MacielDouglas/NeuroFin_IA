@@ -18,6 +18,7 @@ import { BOARD_COLUMNS, TASK_STATUS_LABELS } from "@/lib/utils/task";
 import { updateTaskAction } from "@/server/actions/task.actions";
 import type { TaskWithRelations } from "@/types/task";
 import type { TaskStatus } from "@/generated/prisma/client";
+import { notify } from "@/lib/utils/toast";
 
 type TaskBoardProps = {
   tasks: TaskWithRelations[];
@@ -48,21 +49,29 @@ function handleDragStart(event: DragStartEvent) {
 function handleDragEnd(event: DragEndEvent) {
   const { active, over } = event;
   setActiveTask(null);
-
   if (!over) return;
 
-  const taskId = String(active.id);           // ← String() para garantir
+  const taskId = String(active.id);
   const newStatus = String(over.id) as TaskStatus;
-
   const task = localTasks.find((t) => t.id === taskId);
   if (!task || task.status === newStatus) return;
 
+  const previousStatus = task.status;
   setLocalTasks((prev) =>
     prev.map((t) => (t.id === taskId ? { ...t, status: newStatus } : t)),
   );
 
   startTransition(async () => {
-    await updateTaskAction(taskId, { status: newStatus });
+    const result = await updateTaskAction(taskId, { status: newStatus });
+    if (!result.success) {
+      // Reverter otimista em caso de erro
+      setLocalTasks((prev) =>
+        prev.map((t) => (t.id === taskId ? { ...t, status: previousStatus } : t)),
+      );
+      notify.error("Erro ao mover tarefa");
+      return;
+    }
+    notify.success(`Movido para ${TASK_STATUS_LABELS[newStatus]}`);
     router.refresh();
   });
 }

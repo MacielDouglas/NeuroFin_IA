@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { APP_DESCRIPTION, APP_NAME } from "@/lib/constants/app";
 import { AppProvider } from "@/providers/app-provider";
 import "./globals.css";
+import { Toaster } from "sonner";
 
 
 
@@ -23,7 +24,16 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <body suppressHydrationWarning>
-        <AppProvider>{children}</AppProvider>
+        <AppProvider>{children}
+                  <Toaster
+          position="bottom-right"
+          richColors
+          closeButton
+          toastOptions={{
+            duration: 3000,
+          }}
+        />
+        </AppProvider>
       </body>
     </html>
   );

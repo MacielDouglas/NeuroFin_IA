@@ -1,4 +1,4 @@
-import type { Subtask, Task, TaskPriority, TaskStatus, User } from "@/generated/prisma/client";
+import type { Project, Subtask, Task, TaskPriority, TaskStatus, User } from "@/generated/prisma/client";
 
 export type { TaskStatus, TaskPriority };
 
@@ -29,4 +29,8 @@ export type UpdateTaskInput = {
 export type CreateSubtaskInput = {
   title: string;
   taskId: string;
+};
+
+export type TaskWithProject = TaskWithRelations & {
+  project: Pick<Project, "id" | "name">;
 };
