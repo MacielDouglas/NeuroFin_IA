@@ -6,7 +6,7 @@ export type ProjectWithOwner = Project & {
   owner: Pick<User, "id" | "name" | "image">;
   _count: {
     tasks: number;
-    completedTasks: number; // ← adicionar
+    completedTasks?: number; // ← opcional, só vem no listByUser
     members: number;
   };
 };

@@ -6,7 +6,6 @@ export type TaskWithRelations = Task & {
   assignee: Pick<User, "id" | "name" | "image"> | null;
   createdBy: Pick<User, "id" | "name">;
   subtasks: Subtask[];
-  _count: { comments: number };
 };
 
 export type CreateTaskInput = {

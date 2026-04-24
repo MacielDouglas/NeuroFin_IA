@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-// import { ProjectCard } from "@/features/projects/components/project-card";
 import type { ProjectWithOwner } from "@/types/project";
 import { ProjectCard } from "@/features/projects/components/project-card";
 
@@ -14,7 +13,7 @@ const mockProject: ProjectWithOwner = {
   createdAt: new Date(),
   updatedAt: new Date(),
   owner: { id: "user_1", name: "Douglas", image: null },
-  _count: { tasks: 10, members: 3 },
+   _count: { tasks: 10, completedTasks: 4, members: 3 },
 };
 
 describe("ProjectCard", () => {

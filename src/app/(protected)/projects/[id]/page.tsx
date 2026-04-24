@@ -28,6 +28,12 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       taskService.listByProject(id, session.user.id),
     ]);
 
+       // ← log temporário para diagnóstico
+    console.log("[DEBUG] userId:", session.user.id);
+    console.log("[DEBUG] projectId:", id);
+    console.log("[DEBUG] tasks count:", tasks.length);
+    console.log("[DEBUG] tasks:", JSON.stringify(tasks.map(t => ({ id: t.id, title: t.title, status: t.status })), null, 2));
+
     return (
       <div className="flex h-full flex-col gap-6">
         <ProjectHeader project={project} />

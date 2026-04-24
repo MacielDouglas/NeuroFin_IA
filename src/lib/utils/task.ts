@@ -1,32 +1,33 @@
 import type { TaskPriority, TaskStatus } from "@/generated/prisma/client";
 
 export const TASK_STATUS_LABELS: Record<TaskStatus, string> = {
-  BACKLOG: "Backlog",
-  TODO: "A fazer",
+  BACKLOG:     "Backlog",
+  TODO:        "A fazer",
   IN_PROGRESS: "Em andamento",
-  IN_REVIEW: "Em revisão",
-  DONE: "Concluído",
-  CANCELLED: "Cancelado",
+  IN_REVIEW:   "Em revisão",
+  DONE:        "Concluído",
+  CANCELLED:   "Cancelado",
 };
 
 export const TASK_PRIORITY_LABELS: Record<TaskPriority, string> = {
-  LOW: "Baixa",
+  LOW:    "Baixa",
   MEDIUM: "Média",
-  HIGH: "Alta",
+  HIGH:   "Alta",
   URGENT: "Urgente",
 };
 
 export const TASK_PRIORITY_COLORS: Record<TaskPriority, string> = {
-  LOW: "text-muted-foreground",
+  LOW:    "text-muted-foreground",
   MEDIUM: "text-blue-500",
-  HIGH: "text-orange-500",
+  HIGH:   "text-orange-500",
   URGENT: "text-destructive",
 };
 
+// ← BACKLOG incluído
 export const BOARD_COLUMNS: TaskStatus[] = [
+  "BACKLOG",
   "TODO",
   "IN_PROGRESS",
-  "IN_REVIEW",
   "DONE",
 ];
 
