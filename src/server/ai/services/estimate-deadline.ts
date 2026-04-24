@@ -19,7 +19,7 @@ export async function estimateDeadline(
   const rateLimit = checkRateLimit(userId, "ESTIMATE_DEADLINE");
   if (!rateLimit.allowed) {
     throw new AppError(
-      `Limite atingido. Tente em ${Math.ceil((rateLimit.retryAfterMs ?? 60000) / 1000)}s`,
+      `Limite de chamadas atingido. Tente novamente em ${Math.ceil((rateLimit.retryAfterMs ?? 60000) / 1000)}s`,
       "RATE_LIMIT_EXCEEDED",
       429,
     );
@@ -27,44 +27,50 @@ export async function estimateDeadline(
 
   const today = new Date().toISOString().split("T")[0];
 
-const response = await groqProvider.complete(
-  [
+  const response = await groqProvider.complete(
+    [
+      {
+        role: "system",
+        content: [
+          "Você é um gerente de projetos de software experiente.",
+          "Analise as informações da tarefa e estime um prazo realista considerando complexidade, prioridade e tamanho do time.",
+          `A data de hoje é ${today}.`,
+          'Responda APENAS com JSON válido: {"estimatedDays":5,"confidence":"MEDIUM","reasoning":"...","risks":["..."],"suggestedDate":"2026-05-01"}',
+          "confidence deve ser: LOW, MEDIUM ou HIGH. suggestedDate no formato YYYY-MM-DD.",
+          "estimatedDays deve ser um número inteiro positivo (dias úteis estimados).",
+        ].join(" "),
+      },
+      {
+        role: "user",
+        content: [
+          `Tarefa: "${input.taskTitle}"`,
+          input.taskDescription ? `Descrição: ${input.taskDescription}` : "",
+          `Subtarefas planejadas: ${input.subtasksCount}`,
+          `Prioridade: ${input.priority}`,
+          `Tamanho do time: ${input.teamSize} pessoa(s)`,
+          input.assigneeName ? `Responsável: ${input.assigneeName}` : "",
+          input.projectContext ? `Contexto do projeto: ${input.projectContext}` : "",
+          "Estime um prazo realista e identifique os principais riscos.",
+        ]
+          .filter(Boolean)
+          .join("\n"),
+      },
+    ],
     {
-      role: "system",
-      content: [
-        "Você é um gerente de projetos de software experiente.",
-        "Analise as informações da tarefa e estime um prazo realista.",
-        `A data de hoje é ${today}.`,
-        'Responda APENAS com JSON: {"estimatedDays":5,"confidence":"MEDIUM","reasoning":"...","risks":["..."],"suggestedDate":"2026-05-01"}',
-        "confidence: LOW, MEDIUM ou HIGH. suggestedDate no formato YYYY-MM-DD.",
-      ].join(" "),
+      temperature: 0.2,
+      maxTokens: 800,
     },
-    {
-      role: "user",
-      content: [
-        `Tarefa: "${input.taskTitle}"`,
-        `Subtarefas: ${input.subtasksCount}`,
-        `Prioridade: ${input.priority}`,
-        `Tamanho do time: ${input.teamSize} pessoa(s)`,
-        input.assigneeName ? `Responsável: ${input.assigneeName}` : "",
-        input.projectContext ? `Contexto: ${input.projectContext}` : "",
-      ]
-        .filter(Boolean)
-        .join("\n"),
-    },
-  ],
-  {
-    temperature: 0.2,
-    maxTokens: 800,
-  },
-);
-
-  const parsed = estimateDeadlineOutputSchema.safeParse(
-    JSON.parse(response.content),
   );
 
+  const raw = JSON.parse(response.content) as unknown;
+
+  const parsed = estimateDeadlineOutputSchema.safeParse(raw);
   if (!parsed.success) {
-    throw new AppError("Resposta da IA fora do formato esperado", "AI_PARSE_ERROR");
+    throw new AppError(
+      "Resposta da IA inválida para estimativa de prazo",
+      "AI_PARSE_ERROR",
+      500,
+    );
   }
 
   await logAiCall({

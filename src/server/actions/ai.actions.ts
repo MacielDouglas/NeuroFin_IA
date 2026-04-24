@@ -7,7 +7,6 @@ import { generateSubtasks } from "@/server/ai/services/generate-subtasks";
 import { estimateDeadline } from "@/server/ai/services/estimate-deadline";
 import { summarizeProject } from "@/server/ai/services/summarize-project";
 import { detectBottlenecks } from "@/server/ai/services/detect-bottlenecks";
-// import type { GenerateSubtasksInput } from "@/server/ai/schemas/subtasks.schema";
 import type { EstimateDeadlineInput } from "@/server/ai/schemas/deadline.schema";
 import type { SummarizeProjectInput } from "@/server/ai/schemas/summary.schema";
 import type { DetectBottlenecksInput } from "@/server/ai/schemas/bottleneck.schema";
@@ -42,16 +41,17 @@ export async function generateSubtasksAction(
 
 
 export async function estimateDeadlineAction(
+  taskId: string,
   input: EstimateDeadlineInput,
-  context?: { taskId?: string; projectId?: string },
 ) {
   const session = await getServerSession();
   if (!session) return fail("Não autenticado", "UNAUTHORIZED");
 
   try {
-    const result = await estimateDeadline(input, session.user.id, context);
+    const result = await estimateDeadline(input, session.user.id, { taskId });
     return ok(result);
   } catch (error) {
+    console.error("[AI] estimateDeadline error:", error);
     if (error instanceof AppError) return fail(error.message, error.code);
     return fail("Erro ao estimar prazo");
   }

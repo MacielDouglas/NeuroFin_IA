@@ -2,7 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { Check, Plus } from "lucide-react";
+import { Check, Loader2, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils/cn";
@@ -66,30 +66,44 @@ export function SubtaskList({ subtasks, taskId }: SubtaskListProps) {
         </button>
       ))}
 
-      {adding ? (
-        <form onSubmit={handleAdd} className="flex gap-2 pt-1">
-          <Input
-            autoFocus
-            value={newTitle}
-            onChange={(e) => setNewTitle(e.target.value)}
-            placeholder="Título da subtarefa..."
-            className="h-8 text-[13px]"
-            disabled={isPending}
-          />
-          <Button type="submit" size="sm" className="h-8" loading={isPending}>
-            Salvar
-          </Button>
-          <Button
-            type="button"
-            variant="ghost"
-            size="sm"
-            className="h-8"
-            onClick={() => setAdding(false)}
-          >
-            Cancelar
-          </Button>
-        </form>
-      ) : (
+   {adding ? (
+  <form onSubmit={handleAdd} className="space-y-2 pt-1">
+    <Input
+      autoFocus
+      value={newTitle}
+      onChange={(e) => setNewTitle(e.target.value)}
+      placeholder="Título da subtarefa..."
+      className="h-8 text-[13px] w-full"
+      disabled={isPending}
+    />
+    <div className="flex gap-2">
+      <Button
+        type="submit"
+        size="sm"
+        className="h-7 text-[11px]"
+        disabled={isPending || !newTitle.trim()}
+      >
+        {isPending ? (
+          <Loader2 size={11} className="animate-spin mr-1" />
+        ) : null}
+        Salvar
+      </Button>
+      <Button
+        type="button"
+        variant="ghost"
+        size="sm"
+        className="h-7 text-[11px]"
+        onClick={() => {
+          setAdding(false);
+          setNewTitle("");
+        }}
+        disabled={isPending}
+      >
+        Cancelar
+      </Button>
+    </div>
+  </form>
+) : (
         <button
           type="button"
           onClick={() => setAdding(true)}

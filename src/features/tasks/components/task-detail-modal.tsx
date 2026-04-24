@@ -30,6 +30,7 @@ import { cn } from "@/lib/utils/cn";
 import type { TaskWithRelations } from "@/types/task";
 import type { TaskStatus, TaskPriority } from "@/generated/prisma/client";
 import { AiSubtaskGenerator } from "./ai-substask-generator";
+import { AiDeadlineEstimator } from "./ai-deadline-estimator";
 
 type TaskDetailModalProps = {
   task: TaskWithRelations;
@@ -74,8 +75,8 @@ export function TaskDetailModal({ task, open, onClose }: TaskDetailModalProps) {
 
   return (
     <Dialog open={open} onOpenChange={(o) => !o && onClose()}>
-  <DialogContent
-  className="max-w-2xl max-h-[90vh] overflow-y-auto"
+<DialogContent
+  className="max-w-2xl w-full max-h-[90vh] min-h-125 overflow-y-auto"
   aria-describedby={undefined}
 >
         <DialogHeader>
@@ -94,16 +95,16 @@ export function TaskDetailModal({ task, open, onClose }: TaskDetailModalProps) {
           </div>
         </DialogHeader>
 
-        <div className="grid grid-cols-[1fr_200px] gap-6 mt-2">
+      <div className="grid grid-cols-[1fr_200px] gap-6 mt-2 min-w-0">
           {/* Coluna principal */}
-          <div className="space-y-4">
+         <div className="space-y-4 min-w-0 overflow-hidden">
             {/* Descrição */}
             <div>
               <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-2">
                 Descrição
               </p>
               {editingDesc ? (
-                <div className="space-y-2">
+                <div className="space-y-4">
                   <Textarea
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
@@ -248,19 +249,30 @@ export function TaskDetailModal({ task, open, onClose }: TaskDetailModalProps) {
 
             {/* Prazo */}
             {task.dueDate && (
-              <div>
-                <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1.5">
-                  Prazo
-                </p>
-                <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                  <Calendar size={12} />
-                  {new Intl.DateTimeFormat("pt-BR", {
-                    day: "2-digit",
-                    month: "short",
-                    year: "numeric",
-                  }).format(new Date(task.dueDate))}
-                </div>
-              </div>
+          <div>
+  <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1.5">
+    Prazo
+  </p>
+  {task.dueDate && (
+    <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-2">
+      <Calendar size={12} />
+      {new Intl.DateTimeFormat("pt-BR", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+      }).format(new Date(task.dueDate))}
+    </div>
+  )}
+  <AiDeadlineEstimator
+    taskId={task.id}
+    taskTitle={task.title}
+    taskDescription={task.description ?? undefined}
+    subtasksCount={task.subtasks.length}
+    priority={task.priority}
+    assigneeName={task.assignee?.name ?? undefined}
+    currentDueDate={task.dueDate}
+  />
+</div>
             )}
           </div>
         </div>

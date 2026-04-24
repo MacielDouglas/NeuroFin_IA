@@ -1,20 +1,21 @@
 import { z } from "zod";
 
 export const estimateDeadlineInputSchema = z.object({
-  taskTitle: z.string().min(2).max(200),
-  subtasksCount: z.number().int().min(0),
-  priority: z.enum(["LOW", "MEDIUM", "HIGH", "URGENT"]),
+  taskTitle: z.string().min(3),
+  taskDescription: z.string().optional(),
+  subtasksCount: z.number().int().min(0).default(0),
+  priority: z.enum(["LOW", "MEDIUM", "HIGH", "URGENT"]).default("MEDIUM"),
+  teamSize: z.number().int().min(1).default(1),
   assigneeName: z.string().optional(),
-  teamSize: z.number().int().min(1),
-  projectContext: z.string().max(300).optional(),
+  projectContext: z.string().optional(),
 });
 
 export const estimateDeadlineOutputSchema = z.object({
-  estimatedDays: z.number().min(0.5),
+  estimatedDays: z.number().int().min(1),
   confidence: z.enum(["LOW", "MEDIUM", "HIGH"]),
   reasoning: z.string(),
-  risks: z.array(z.string()).max(5),
-  suggestedDate: z.string(), // ISO date
+  risks: z.array(z.string()),
+  suggestedDate: z.string(), // YYYY-MM-DD
 });
 
 export type EstimateDeadlineInput = z.infer<typeof estimateDeadlineInputSchema>;

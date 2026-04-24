@@ -137,55 +137,56 @@ export function AiSubtaskGenerator({
 
   return (
     <div className="rounded-xl border border-dashed border-primary/30 bg-primary/5 overflow-hidden">
-      {/* Header */}
-      <div className="flex items-center justify-between px-3 py-2.5">
-        <div className="flex items-center gap-2">
-          <Sparkles size={14} className="text-primary" />
-          <span className="text-[12px] font-semibold text-primary">
-            Gerar subtarefas com IA
-          </span>
-          {hasExistingSubtasks && (
-            <span className="text-[10px] text-muted-foreground bg-secondary px-1.5 py-0.5 rounded-full">
-              Vai adicionar às existentes
-            </span>
-          )}
-        </div>
+{/* Header */}
+<div className="flex items-center justify-between px-3 py-2.5 gap-2">
+  <div className="flex flex-col gap-0.5 min-w-0">
+    <div className="flex items-center gap-1.5">
+      <Sparkles size={14} className="text-primary shrink-0" />
+      <span className="text-[12px] font-semibold text-primary truncate">
+        Gerar subtarefas com IA
+      </span>
+    </div>
+    {/* Badge movido para linha própria */}
+    {hasExistingSubtasks && (
+      <span className="text-[10px] text-muted-foreground ml-5">
+        Vai adicionar às subtarefas existentes
+      </span>
+    )}
+  </div>
 
-        <div className="flex items-center gap-1.5">
-          {hasResult && (
-            <button
-              type="button"
-              onClick={() => setExpanded((v) => !v)}
-              className="text-muted-foreground hover:text-foreground transition-colors"
-              aria-label={expanded ? "Recolher" : "Expandir"}
-            >
-              {expanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
-            </button>
-          )}
+  {!hasResult && (
+    <Button
+      size="sm"
+      variant="default"
+      className="h-7 text-[11px] gap-1.5 shrink-0"
+      onClick={handleGenerate}
+      disabled={isGenerating}
+    >
+      {isGenerating ? (
+        <>
+          <Loader2 size={11} className="animate-spin" />
+          Gerando...
+        </>
+      ) : (
+        <>
+          <Sparkles size={11} />
+          Gerar
+        </>
+      )}
+    </Button>
+  )}
 
-          {!hasResult && (
-            <Button
-              size="sm"
-              variant="default"
-              className="h-7 text-[11px] gap-1.5"
-              onClick={handleGenerate}
-              disabled={isGenerating}
-            >
-              {isGenerating ? (
-                <>
-                  <Loader2 size={11} className="animate-spin" />
-                  Gerando...
-                </>
-              ) : (
-                <>
-                  <Sparkles size={11} />
-                  Gerar
-                </>
-              )}
-            </Button>
-          )}
-        </div>
-      </div>
+  {hasResult && (
+    <Button
+      type="button"
+      onClick={() => setExpanded((v) => !v)}
+      className="text-muted-foreground hover:text-foreground transition-colors shrink-0"
+      aria-label={expanded ? "Recolher" : "Expandir"}
+    >
+      {expanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+    </Button>
+  )}
+</div>
 
       {/* Erro */}
       {error && (
