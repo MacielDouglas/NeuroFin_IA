@@ -1,9 +1,23 @@
-"use client"
+"use client";
 
+import { useTransition } from "react";
+import { useRouter } from "next/navigation";
+import {
+  DndContext,
+  DragOverlay,
+  DragStartEvent,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  type DragEndEvent,
+} from "@dnd-kit/core";
+import { useState } from "react";
+import { TaskColumn } from "./task-column";
+import { TaskCard } from "./task-card";
 import { BOARD_COLUMNS, TASK_STATUS_LABELS } from "@/lib/utils/task";
+import { updateTaskAction } from "@/server/actions/task.actions";
 import type { TaskWithRelations } from "@/types/task";
 import type { TaskStatus } from "@/generated/prisma/client";
-import { TaskColumn } from "./task-column";
 
 type TaskBoardProps = {
   tasks: TaskWithRelations[];
@@ -11,20 +25,73 @@ type TaskBoardProps = {
 };
 
 export function TaskBoard({ tasks, projectId }: TaskBoardProps) {
-  const byStatus = (status: TaskStatus) =>
-    tasks.filter((t) => t.status === status);
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+  const [activeTask, setActiveTask] = useState<TaskWithRelations | null>(null);
+  // optimistic local state
+  const [localTasks, setLocalTasks] = useState(tasks);
 
+  // Sincroniza quando o servidor revalida
+  if (tasks !== localTasks && !isPending) {
+    setLocalTasks(tasks);
+  }
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
+  );
+
+function handleDragStart(event: DragStartEvent) {
+  const task = localTasks.find((t) => t.id === String(event.active.id));
+  if (task) setActiveTask(task);
+}
+
+function handleDragEnd(event: DragEndEvent) {
+  const { active, over } = event;
+  setActiveTask(null);
+
+  if (!over) return;
+
+  const taskId = String(active.id);           // ← String() para garantir
+  const newStatus = String(over.id) as TaskStatus;
+
+  const task = localTasks.find((t) => t.id === taskId);
+  if (!task || task.status === newStatus) return;
+
+  setLocalTasks((prev) =>
+    prev.map((t) => (t.id === taskId ? { ...t, status: newStatus } : t)),
+  );
+
+  startTransition(async () => {
+    await updateTaskAction(taskId, { status: newStatus });
+    router.refresh();
+  });
+}
   return (
-    <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 overflow-x-auto sm:grid-cols-2 lg:grid-cols-4">
-      {BOARD_COLUMNS.map((status) => (
-        <TaskColumn
-          key={status}
-          status={status}
-          label={TASK_STATUS_LABELS[status]}
-          tasks={byStatus(status)}
-          projectId={projectId}
-        />
-      ))}
-    </div>
+    <DndContext
+      sensors={sensors}
+      onDragStart={handleDragStart}
+      onDragEnd={handleDragEnd}
+    >
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        {BOARD_COLUMNS.map((status) => (
+          <TaskColumn
+            key={status}
+            status={status}
+            label={TASK_STATUS_LABELS[status]}
+            tasks={localTasks.filter((t) => t.status === status)}
+            projectId={projectId}
+          />
+        ))}
+      </div>
+
+      {/* Card fantasma durante o drag */}
+      <DragOverlay>
+        {activeTask ? (
+          <div className="opacity-90 rotate-1 scale-105">
+            <TaskCard task={activeTask} />
+          </div>
+        ) : null}
+      </DragOverlay>
+    </DndContext>
   );
 }

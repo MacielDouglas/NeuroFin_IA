@@ -90,3 +90,26 @@ export async function toggleSubtaskAction(subtaskId: string) {
     return fail("Erro ao atualizar subtarefa");
   }
 }
+
+export async function createSubtasksBatchAction(
+  taskId: string,
+  subtasks: Array<{ title: string; description?: string }>,
+) {
+  const session = await getServerSession();
+  if (!session) return fail("Não autenticado", "UNAUTHORIZED");
+
+  try {
+    const created = await Promise.all(
+      subtasks.map((s) =>
+        taskService.createSubtask(
+          { title: s.title, taskId },
+          session.user.id,
+        ),
+      ),
+    );
+    return ok(created);
+  } catch (error) {
+    if (error instanceof AppError) return fail(error.message, error.code);
+    return fail("Erro ao salvar subtarefas");
+  }
+}

@@ -34,10 +34,7 @@ export function AiSubtaskPanel({
     setLoading(true);
     setError(null);
 
-    const response = await generateSubtasksAction(
-      { taskTitle, taskDescription },
-      { taskId },
-    );
+    const response = await generateSubtasksAction(taskId, taskTitle, taskDescription);
 
     if (!response.success) {
       setError(response.error);

@@ -7,26 +7,39 @@ import { generateSubtasks } from "@/server/ai/services/generate-subtasks";
 import { estimateDeadline } from "@/server/ai/services/estimate-deadline";
 import { summarizeProject } from "@/server/ai/services/summarize-project";
 import { detectBottlenecks } from "@/server/ai/services/detect-bottlenecks";
-import type { GenerateSubtasksInput } from "@/server/ai/schemas/subtasks.schema";
+// import type { GenerateSubtasksInput } from "@/server/ai/schemas/subtasks.schema";
 import type { EstimateDeadlineInput } from "@/server/ai/schemas/deadline.schema";
 import type { SummarizeProjectInput } from "@/server/ai/schemas/summary.schema";
 import type { DetectBottlenecksInput } from "@/server/ai/schemas/bottleneck.schema";
 
 export async function generateSubtasksAction(
-  input: GenerateSubtasksInput,
-  context?: { taskId?: string; projectId?: string },
+  taskId: string,
+  taskTitle: string,
+  taskDescription?: string,
+  projectContext?: string,
 ) {
   const session = await getServerSession();
   if (!session) return fail("Não autenticado", "UNAUTHORIZED");
 
   try {
-    const result = await generateSubtasks(input, session.user.id, context);
+    const result = await generateSubtasks(
+      {
+        taskTitle,
+        taskDescription,
+        projectContext,
+      },
+      session.user.id,
+      {taskId},
+    );
     return ok(result);
   } catch (error) {
+    console.error("[AI] generateSubtasks error:", error);
     if (error instanceof AppError) return fail(error.message, error.code);
     return fail("Erro ao gerar subtarefas");
   }
 }
+
+
 
 export async function estimateDeadlineAction(
   input: EstimateDeadlineInput,

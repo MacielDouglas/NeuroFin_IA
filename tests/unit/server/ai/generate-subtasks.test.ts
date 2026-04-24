@@ -63,7 +63,7 @@ describe("generateSubtasks", () => {
 
     await expect(
       generateSubtasks({ taskTitle: "Tarefa" }, userId),
-    ).rejects.toThrow("Resposta da IA fora do formato esperado");
+    ).rejects.toThrow("Resposta da IA inválida para subtarefas");
   });
 
   it("deve rejeitar título muito curto", async () => {

@@ -5,7 +5,7 @@ import { groqProvider } from "@/server/ai/provider/groq.provider";
 import {
   generateSubtasksInputSchema,
   generateSubtasksOutputSchema,
-    type GenerateSubtasksInput,
+  type GenerateSubtasksInput,
   type GenerateSubtasksOutput,
 } from "@/server/ai/schemas/subtasks.schema";
 
@@ -25,42 +25,45 @@ export async function generateSubtasks(
     );
   }
 
-const response = await groqProvider.complete(
-  [
+  const response = await groqProvider.complete(
+    [
+      {
+        role: "system",
+        content: [
+          "Você é um engenheiro de software sênior especializado em gestão de projetos ágeis.",
+          "Sua tarefa é quebrar tarefas de desenvolvimento em subtarefas técnicas menores e acionáveis.",
+          "Cada subtarefa deve ser específica, estimável e completável em até 2 dias.",
+          'Responda APENAS com um objeto JSON válido no formato: {"subtasks":[{"title":"...","description":"...","estimatedHours":2,"priority":"HIGH"}],"reasoning":"..."}',
+          "Priority deve ser: LOW, MEDIUM ou HIGH. estimatedHours entre 0.5 e 40.",
+        ].join(" "),
+      },
+      {
+        role: "user",
+        content: [
+          `Tarefa: "${input.taskTitle}"`,
+          input.taskDescription ? `Descrição: ${input.taskDescription}` : "",
+          input.projectContext ? `Contexto do projeto: ${input.projectContext}` : "",
+          "Gere entre 3 e 8 subtarefas técnicas para completar esta tarefa.",
+        ]
+          .filter(Boolean)
+          .join("\n"),
+      },
+    ],
     {
-      role: "system",
-      content: [
-        "Você é um engenheiro de software sênior especializado em gestão de projetos ágeis.",
-        "Sua tarefa é quebrar tarefas de desenvolvimento em subtarefas técnicas menores e acionáveis.",
-        "Cada subtarefa deve ser específica, estimável e completável em até 2 dias.",
-        'Responda APENAS com um objeto JSON válido no formato: {"subtasks":[{"title":"...","description":"...","estimatedHours":2,"priority":"HIGH"}],"reasoning":"..."}',
-        "Priority deve ser: LOW, MEDIUM ou HIGH. estimatedHours entre 0.5 e 40.",
-      ].join(" "),
+      temperature: 0.4,
+      maxTokens: 1500,
     },
-    {
-      role: "user",
-      content: [
-        `Tarefa: "${input.taskTitle}"`,
-        input.taskDescription ? `Descrição: ${input.taskDescription}` : "",
-        input.projectContext ? `Contexto do projeto: ${input.projectContext}` : "",
-        "Gere entre 3 e 8 subtarefas técnicas para completar esta tarefa.",
-      ]
-        .filter(Boolean)
-        .join("\n"),
-    },
-  ],
-  {
-    temperature: 0.4,
-    maxTokens: 1500,
-  },
-);
-
-  const parsed = generateSubtasksOutputSchema.safeParse(
-    JSON.parse(response.content),
   );
 
+  const raw = JSON.parse(response.content) as unknown;
+
+  const parsed = generateSubtasksOutputSchema.safeParse(raw);
   if (!parsed.success) {
-    throw new AppError("Resposta da IA fora do formato esperado", "AI_PARSE_ERROR");
+    throw new AppError(
+      "Resposta da IA inválida para subtarefas",
+      "AI_PARSE_ERROR",
+      500,
+    );
   }
 
   await logAiCall({
