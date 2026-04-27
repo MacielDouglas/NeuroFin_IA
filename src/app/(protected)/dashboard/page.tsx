@@ -20,7 +20,7 @@ export default async function DashboardPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-semibold tracking-tight text-foreground">
-          Bom dia, {session.user.name.split(" ")[0]} 👋
+          Seja bem vindo, {session.user.name.split(" ")[0]}.
         </h1>
         <p className="mt-1 text-sm text-muted-foreground">
           Aqui está o resumo dos seus projetos.
