@@ -26,7 +26,7 @@ export default async function DashboardPage() {
             <CardTitle className="text-3xl font-bold">—</CardTitle>
           </CardHeader>
           <CardContent>
-            <Badge variant="success">Tudo certo</Badge>
+            <Badge className="bg-success/15 text-emerald-800 dark:text-emerald-300 text-[11px] font-medium">Tudo certo</Badge>
           </CardContent>
         </Card>
 

@@ -25,7 +25,7 @@ export function Header({ user }: HeaderProps) {
 
   async function handleSignOut() {
     await signOut();
-    router.push("/login");
+    router.push("/sign-in");
   }
 
   return (

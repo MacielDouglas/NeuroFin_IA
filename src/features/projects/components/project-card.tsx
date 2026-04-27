@@ -44,16 +44,19 @@ const progress = getProgressPercent(
               <span>Progresso</span>
               <span>{progress}%</span>
             </div>
-            <div className="h-1.5 w-full overflow-hidden rounded-full bg-secondary">
-              <div
-                className="h-full rounded-full bg-primary transition-all duration-300"
-                style={{ width: `${progress}%` }}
-                role="progressbar"
-                aria-valuenow={progress}
-                aria-valuemin={0}
-                aria-valuemax={100}
-              />
-            </div>
+<div
+  role="progressbar"
+  aria-valuenow={progress}
+  aria-valuemin={0}
+  aria-valuemax={100}
+  aria-label={`Progresso do projeto: ${progress}%`}
+  className="h-1.5 bg-secondary w-full rounded-full overflow-hidden"
+>
+  <div
+    className="h-full rounded-full bg-primary transition-all duration-300"
+    style={{ width: `${progress}%` }}
+  />
+</div>
           </div>
 
           {/* Métricas */}

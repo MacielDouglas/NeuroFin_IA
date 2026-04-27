@@ -1,6 +1,6 @@
+import { TasksPageClient } from "@/features/tasks/components/tasks-page-client";
 import { requireSession } from "@/lib/auth/authorize";
 import { taskService } from "@/server/services/task.service";
-import { TasksPageClient } from "@/features/tasks/components/tasks-page-client";
 
 export default async function TasksPage() {
   const session = await requireSession();

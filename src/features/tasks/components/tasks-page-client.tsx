@@ -67,9 +67,9 @@ export function TasksPageClient({ tasks }: TasksPageClientProps) {
             value={filterStatus}
             onValueChange={(v) => setFilterStatus(v as TaskStatus | "ALL")}
           >
-            <SelectTrigger className="h-9 text-xs w-36">
-              <SelectValue placeholder="Status" />
-            </SelectTrigger>
+         <SelectTrigger className="h-9 text-xs w-36" aria-label="Filtrar por status">
+  <SelectValue placeholder="Status" />
+</SelectTrigger>
             <SelectContent>
               <SelectItem value="ALL" className="text-xs">
                 Todos os status
@@ -86,9 +86,9 @@ export function TasksPageClient({ tasks }: TasksPageClientProps) {
             value={filterPriority}
             onValueChange={(v) => setFilterPriority(v as TaskPriority | "ALL")}
           >
-            <SelectTrigger className="h-9 text-xs w-36">
-              <SelectValue placeholder="Prioridade" />
-            </SelectTrigger>
+            <SelectTrigger className="h-9 text-xs w-36" aria-label="Filtrar por prioridade">
+  <SelectValue placeholder="Prioridade" />
+</SelectTrigger>
             <SelectContent>
               <SelectItem value="ALL" className="text-xs">
                 Todas as prioridades
