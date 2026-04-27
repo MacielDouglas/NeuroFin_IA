@@ -591,7 +591,7 @@ MIT License — Copyright (c) 2026 Douglas Maciel
 Desenvolvedor Full-Stack com foco em TypeScript, Next.js e arquitetura de aplicações modernas.
 
 [![GitHub](https://img.shields.io/badge/GitHub-MacielDouglas-181717?style=flat-square&logo=github)](https://github.com/MacielDouglas)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Douglas%20Maciel-0A66C2?style=flat-square&logo=linkedin)](https://linkedin.com/in/douglas-maciel)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Douglas%20Maciel-0A66C2?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/douglas-maciel-4943461b0)
 
 </div>
 

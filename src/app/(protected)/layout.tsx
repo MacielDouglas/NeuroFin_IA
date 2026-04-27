@@ -4,6 +4,7 @@ import { Header } from "@/components/layout/header";
 import { Sidebar } from "@/components/layout/sidebar";
 import { BottomNav } from "@/components/layout/sidebar";
 
+
 type ProtectedLayoutProps = {
   children: ReactNode;
 };
