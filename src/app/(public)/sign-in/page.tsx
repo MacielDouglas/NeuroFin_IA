@@ -1,5 +1,5 @@
+import { Suspense } from "react";
 import { SignInForm } from "@/features/auth/sign-in-form";
-
 
 export default function SignInPage() {
   return (
@@ -12,7 +12,21 @@ export default function SignInPage() {
           </p>
         </div>
 
-        <SignInForm />
+        <Suspense fallback={
+          <div className="space-y-5 animate-pulse">
+            <div className="space-y-2">
+              <div className="h-4 w-12 rounded bg-zinc-200 dark:bg-zinc-800" />
+              <div className="h-11 w-full rounded-2xl bg-zinc-200 dark:bg-zinc-800" />
+            </div>
+            <div className="space-y-2">
+              <div className="h-4 w-12 rounded bg-zinc-200 dark:bg-zinc-800" />
+              <div className="h-11 w-full rounded-2xl bg-zinc-200 dark:bg-zinc-800" />
+            </div>
+            <div className="h-11 w-full rounded-2xl bg-zinc-200 dark:bg-zinc-800" />
+          </div>
+        }>
+          <SignInForm />
+        </Suspense>
       </div>
     </main>
   );

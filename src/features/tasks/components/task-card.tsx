@@ -6,6 +6,7 @@ import { TaskDetailModal } from "./task-detail-modal";
 import {  TASK_PRIORITY_LABELS, isOverdue, formatDueDate } from "@/lib/utils/task";
 import { cn } from "@/lib/utils/cn";
 import type { TaskWithRelations } from "@/types/task";
+import { motion } from "framer-motion";
 
 type TaskCardProps = {
   task: TaskWithRelations;
@@ -25,13 +26,19 @@ export function TaskCard({ task }: TaskCardProps) {
         className="group w-full text-left rounded-xl border border-border bg-card p-3.5 shadow-sm transition-all hover:shadow-md hover:border-border/80 active:scale-[0.99]"
       >
         {/* Prioridade */}
-        <div className="flex items-start justify-between gap-2 mb-2">
+        <motion.div className="flex items-start justify-between gap-2 mb-2" 
+        layout                         
+  initial={{ opacity: 0, y: 8 }}
+  animate={{ opacity: 1, y: 0 }}
+  exit={{ opacity: 0, scale: 0.95 }}
+  transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
+        >
           <p className="text-[13px] font-medium leading-snug">{task.title}</p>
           <span className="text-[11px] font-semibold uppercase tracking-wide shrink-0 mt-0.5 dark:text-blue-400 text-blue-700">
 
             {TASK_PRIORITY_LABELS[task.priority]}
           </span>
-        </div>
+        </motion.div>
 
         {/* Descrição */}
         {task.description && (

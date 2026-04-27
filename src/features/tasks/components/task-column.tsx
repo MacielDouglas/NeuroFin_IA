@@ -9,6 +9,7 @@ import { CreateTaskInline } from "./create-task-inline";
 import { cn } from "@/lib/utils/cn";
 import type { TaskWithRelations } from "@/types/task";
 import type { TaskStatus } from "@/generated/prisma/client";
+import { AnimatePresence } from "framer-motion";
 
 type TaskColumnProps = {
   status: TaskStatus;
@@ -62,7 +63,11 @@ export function TaskColumn({ status, label, tasks, projectId }: TaskColumnProps)
               <p className="text-[12px] text-muted-foreground">Nenhuma tarefa</p>
             </div>
           ) : (
-            tasks.map((task) => <TaskCard key={task.id} task={task} />)
+           <AnimatePresence mode="popLayout">
+  {tasks.map((task) => (
+    <TaskCard key={task.id} task={task} />
+  ))}
+</AnimatePresence>
           )}
         </SortableContext>
 
