@@ -1,4 +1,4 @@
-readme = r"""<div align="center">
+<div align="center">
 
 # 🎼 OrquestraAI
 
@@ -600,9 +600,3 @@ Desenvolvedor Full-Stack com foco em TypeScript, Next.js e arquitetura de aplica
 <div align="center">
   <sub>Feito com ☕, TypeScript e muita atenção aos detalhes.</sub>
 </div>
-"""
-
-with open('/home/user/output/README.md', 'w', encoding='utf-8') as f:
-    f.write(readme)
-
-print(f"README.md gerado: {len(readme)} caracteres / {len(readme.splitlines())} linhas")
